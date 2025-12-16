@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kontak | P.S.P. Dharma Budaya</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { 
+      font-family: Arial, sans-serif; 
+      background-color: #121212; 
+      color: white; 
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      width: 100%;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      /*background: #000;*/
+    }
+
+    .logo img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .logo img:hover { transform: scale(1.1); }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { color: white; text-decoration: none; font-size: 16px; }
+    .nav-links a:hover,
+    .nav-links a.active { color: #19c12a; }
+
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger span { height: 3px; width: 25px; background: white; margin: 4px 0; }
+
+    /* ===== KONTAK ===== */
+    .kontak-section {
+      padding: 140px 20px 80px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .kontak-section h2 {
+      font-size: 36px;
+      color: #c59d6b;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .kontak-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .kontak-section input,
+    .kontak-section textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background: #2a2a2a;
+      color: white;
+      font-size: 14px;
+    }
+
+    .kontak-section button {
+      padding: 12px;
+      background-color: #c59d6b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .kontak-section button:hover {
+      background-color: #b38754;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: #000;
+      padding: 50px 10% 20px;
+      color: #fff;
+      border-top: 2px solid #eed3b3;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .footer-logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .footer-left h3 span { color: #19c12a; }
+
+    .footer-center h4,
+    .footer-right h4 {
+      color: #ffffff;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-item img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 10px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #000;
+        position: absolute;
+        top: 70px;
+        right: 40px;
+        width: 200px;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      .nav-links.active { display: flex; }
+      .hamburger { display: flex; }
+
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">
+      <img src="logopadepokan.jpeg" alt="Logo P.S.P. Dharma Budaya">
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tentang.html">Tentang Kami</a>
+        <a href="kontak.html" class="active">Kontak</a>
+        <a href="lokasi.html">Lokasi</a>
+      </div>
+
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- KONTAK -->
+  <section class="kontak-section">
+    <h2>Hubungi Kami</h2>
+
+    <form id="kontakForm">
+      <input type="text" name="nama" placeholder="Nama Anda" required />
+      <input type="email" name="email" placeholder="Email Anda" required />
+      <textarea name="pesan" rows="5" placeholder="Pesan Anda" required></textarea>
+      <button type="submit">Kirim Pesan</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <img src="logopadepokan.jpeg" class="footer-logo" alt="Logo">
+        <h3><span>P.S.P.</span> Dharma Budaya</h3>
+      </div>
+
+      <div class="footer-center">
+        <h4>Jam Operasional</h4>
+        <p>Senin - Minggu</p>
+        <p>08.00 - 22.00 WIB</p>
+      </div>
+
+      <div class="footer-right">
+        <h4>Follow Us</h4>
+
+        <div class="social-item">
+          <a href="https://www.instagram.com/psp.dharmabudaya" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png">
+          </a>
+          <span>@psp.dharmabudaya</span>
+        </div>
+
+        <div class="social-item">
+          <a href="https://youtube.com/@pspdharmabudayatng" target="_blank">
+            <img src="logoyt3.png">
+          </a>
+          <span>Psp Dharma Budaya Tng</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 P.S.P. Dharma Budaya. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    document.getElementById('kontakForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const data = {
+        nama: this.nama.value,
+        email: this.email.value,
+        pesan: this.pesan.value
+      };
+
+      try {
+        const response = await fetch('http://localhost:3000/kirim-pesan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        alert(result.message);
+
+        if (response.ok) this.reset();
+      } catch (err) {
+        alert('Gagal mengirim pesan (server tidak terhubung)');
+      }
+    });
+  </script>
+
+</body>
+</html>
