@@ -243,35 +243,56 @@
 
   <!-- SCRIPT -->
   <script>
-    function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('active');
-    }
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
 
-    document.getElementById('kontakForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
+  document.getElementById('kontakForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-      const data = {
-        nama: this.nama.value,
-        email: this.email.value,
-        pesan: this.pesan.value
-      };
+    const data = {
+      nama: this.nama.value,
+      email: this.email.value,
+      pesan: this.pesan.value
+    };
 
-      try {
-        const response = await fetch('http://localhost:3000/kirim-pesan', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
+    // 💡 PERBAIKAN: Ganti URL ngrok menjadi endpoint API yang benar
+    // URL ngrok Anda: https://bibless-vagrom-demetria.ngrok-free.dev
+    // Endpoint di server.js: /kirim-pesan
+    const ngrokUrl = 'https://bibless-vagrom-demetria.ngrok-free.dev/kirim-pesan';
 
-        const result = await response.json();
-        alert(result.message);
+    try {
+      const button = this.querySelector('button[type="submit"]');
+      button.disabled = true; // Nonaktifkan tombol saat proses kirim
+      button.textContent = 'Mengirim...';
 
-        if (response.ok) this.reset();
-      } catch (err) {
-        alert('Gagal mengirim pesan (server tidak terhubung)');
+      const response = await fetch(ngrokUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      
+      if (response.ok) {
+        alert(result.message || 'Pesan berhasil dikirim dan disimpan!');
+        this.reset();
+      } else {
+        // Tampilkan pesan error dari server jika ada
+        alert('Gagal mengirim pesan: ' + (result.message || 'Terjadi kesalahan pada server.'));
       }
-    });
-  </script>
+      
+    } catch (err) {
+      console.error(err);
+      alert('Gagal mengirim pesan (Pastikan ngrok dan server Node.js aktif dan terhubung dengan benar)');
+    } finally {
+        // Aktifkan kembali tombol setelah selesai
+        const button = this.querySelector('button[type="submit"]');
+        button.disabled = false;
+        button.textContent = 'Kirim Pesan';
+    }
+  });
+</script>
 
 </body>
 </html>
