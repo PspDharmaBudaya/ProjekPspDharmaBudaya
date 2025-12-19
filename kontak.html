@@ -256,7 +256,6 @@
       pesan: this.pesan.value
     };
 
-    // 💡 PERBAIKAN: Ganti URL ngrok menjadi endpoint API yang benar
     // URL ngrok Anda: https://bibless-vagrom-demetria.ngrok-free.dev
     // Endpoint di server.js: /kirim-pesan
     const ngrokUrl = 'https://bibless-vagrom-demetria.ngrok-free.dev/kirim-pesan';
@@ -284,7 +283,7 @@
       
     } catch (err) {
       console.error(err);
-      alert('Gagal mengirim pesan (Pastikan ngrok dan server Node.js aktif dan terhubung dengan benar)');
+      alert('Gagal mengirim pesan (server sedang downtime/mati)');
     } finally {
         // Aktifkan kembali tombol setelah selesai
         const button = this.querySelector('button[type="submit"]');
@@ -296,3 +295,4 @@
 
 </body>
 </html>
+
